@@ -1,0 +1,452 @@
+{% include 'svg-icon' %}
+{{ 'slider-vertical.scss.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width content-vertical">
+
+	<div class="content-vertical__left">
+
+		{%- if section.settings.header.size > 0 -%}
+			<h2 class="content-vertical__heading">{{ section.settings.header }}</h2>
+		{%- endif -%}
+
+		{%- if section.settings.text.size > 0 -%}
+			<div class="content-vertical__text">{{ section.settings.text }}</div>
+		{%- endif -%}
+
+		<div class="listitems">
+			{%- for block in section.blocks -%}
+				{%- case block.type -%}
+					{%- when 'content' -%}
+					{%- liquid
+						assign color_background = block.settings.color_background
+						assign opacity = block.settings.opacity_background
+					-%}
+						<div listitem-number="{{- forloop.index -}}" class="listitem {% if forloop.index == 1 %}active{% endif %}">
+							<div class="listitem__substrate listitem__substrate--{{- forloop.index -}}"></div>
+							{%- if block.settings.image != blank -%}
+								<img class="listitem__icon" src="{{ block.settings.image | img_url: '32x32', crop: center }}">
+							{%- endif -%}
+							{%- if block.settings.icon__title != blank -%}
+								<h4>
+									{{ block.settings.icon__title }}
+								</h4>
+							{%- endif -%}
+						</div>
+						<style>
+							.listitem.active .listitem__substrate--{{- forloop.index -}} {
+								background-color: {{ color_background }};
+								opacity: {{ opacity | divided_by: 100.0 }};
+							}
+						</style>
+				{%- endcase -%}
+			{%- endfor -%}
+		</div>
+	</div>
+
+	<div class="content-vertical__right">
+		<div class="background__image background__image--desk">
+			{{ icon_backgroung_desk }}
+		</div>
+		<div class="background__image background__image--mobile">
+			{{ icon_backgroung_mobile }}
+		</div>
+		<div class="content-vertical__blocks">
+			{%- for block in section.blocks -%}
+			{%- case block.type -%}
+			{%- when 'content' -%}
+				{%- liquid
+					assign color_background_links = block.settings.color_background_block-links
+					assign color_background = block.settings.color_background
+					assign opacity = block.settings.opacity_background
+					assign block_title = block.settings.content-vertical__block-title
+					assign block_description = block.settings.content-vertical__block-description
+					assign block_links = block.settings.content-vertical__block-links
+					assign block_paragraph_1 = block.settings.content-vertical__block-paragraph--1
+					assign block_paragraph_2 = block.settings.content-vertical__block-paragraph--2
+					assign block_paragraph_3 = block.settings.content-vertical__block-paragraph--3
+					assign button_link = block.settings.content-vertical__button--link
+					assign button_name = block.settings.content-vertical__button--name
+					assign price = block.settings.content-vertical__price
+				-%}
+
+				<div class="content-vertical__block block--{{- forloop.index -}}">
+
+					{%- if block_title != blank -%}
+						<div class="content-vertical__block-title">
+							{% capture icon_svg %}{{ block.settings.icon }}{% endcapture %}
+								{%- if block.settings.icon != blank -%}
+									<div class="block__title--icon">
+										{% if icon_svg == 'icon_doctors' %}
+											{{ icon_doctors }}
+										{% elsif icon_svg == 'icon_coach' %}
+											{{ icon_coach }}
+										{% elsif icon_svg == 'icon_phone' %}
+											{{ icon_phone }}
+										{% elsif icon_svg == 'icon_medication' %}
+											{{ icon_medication }}
+										{% elsif icon_svg == 'icon_talk' %}
+											{{ icon_talk }}
+										{% endif %}
+									</div>
+								{%- endif -%}
+							<h3>
+								{{- block_title -}}
+							</h3>
+						</div>
+					{%- endif -%}
+
+					{%- if block_description != blank -%}
+						<div class="content-vertical__block-description">
+							{{- block_description -}}
+						</div>
+					{%- endif -%}
+
+					{%- if block_links != blank -%}
+						<div class="content-vertical__block-links block-links--{{- forloop.index -}}">
+							{{- block_links -}}
+						</div>
+					{%- endif -%}
+
+					{%- if block_paragraph_1 != blank -%}
+						<div class="content-vertical__block-paragraph block-paragraph--{{- forloop.index -}}">
+							<div class="svg-icon-check svg-icon-check--{{- forloop.index -}}">
+								<svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1.36377 4.24163L3.78801 6.66587L8.6365 1.81738" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</div>
+							<p>{{- block_paragraph_1 -}}</p>
+						</div>
+					{%- endif -%}
+
+					{%- if block_paragraph_2 != blank -%}
+						<div class="content-vertical__block-paragraph block-paragraph--{{- forloop.index -}}">
+							<div class="svg-icon-check svg-icon-check--{{- forloop.index -}}">
+								<svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1.36377 4.24163L3.78801 6.66587L8.6365 1.81738" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</div>
+							<p>{{- block_paragraph_2 -}}</p>
+						</div>
+					{%- endif -%}
+
+					{%- if block_paragraph_3 != blank -%}
+						<div class="content-vertical__block-paragraph block-paragraph--{{- forloop.index -}}">
+							<div class="svg-icon-check svg-icon-check--{{- forloop.index -}}">
+								<svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M1.36377 4.24163L3.78801 6.66587L8.6365 1.81738" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+							</div>
+							<p>{{- block_paragraph_3 -}}</p>
+						</div>
+					{%- endif -%}
+
+					{% if button_link.size > 0 and button_name.size > 0 %}
+						<a class="button" href="{{ button_link }}">{{ button_name }}</a>
+					{% endif %}
+
+					{%- if price.size > 0 -%}
+						<p class="content-vertical__price">{{ price }}</p>
+					{%- endif -%}
+
+					<style>
+						.block-links--{{- forloop.index }} p a {
+							background-color: {{ color_background_links }};
+						}
+						.block-paragraph--{{- forloop.index -}}{
+							stroke: {{ color_background }};
+						}
+						.svg-icon-check--{{ forloop.index }}:after{
+							background-color: {{ color_background }};
+							opacity: {{ opacity | divided_by: 100.0}};
+						}
+					</style>
+				</div>
+
+			{%- endcase -%}
+			{%- endfor -%}
+		</div>
+	</div>
+
+</div>
+
+
+<style>
+
+</style>
+
+
+<script>
+
+
+    const listitems = document.querySelectorAll('.listitem'),
+		section = document.querySelector('.content-vertical');
+
+	// изменяем цвет секции в зависимости от нажатого элемента
+	listitems.forEach(elem => {
+		elem.addEventListener('click', clickHeader)
+
+		function clickHeader() {
+			if (!this.classList.contains('active')) {
+				if ( elem.classList.contains('active') ) {
+					elem.classList.remove('active')
+				} else {
+					listitems.forEach(el => {
+						el.classList.remove('active')
+					})
+					elem.classList.add('active')
+				}
+				changeBackgroundColor ();
+			}
+		}
+	})
+
+	function changeBackgroundColor () {
+		let activeListitem = document.querySelector('.listitem.active .listitem__substrate'),
+			colorBg = window.getComputedStyle(activeListitem).backgroundColor,
+			svgBackground = document.querySelectorAll('.background__image svg');
+
+		svgBackground.forEach(elem => {
+			elem.style.fill = colorBg;
+		})
+	}
+	changeBackgroundColor ();
+
+
+	// задаём минимальную высоту секции для полного отображения контента блока, выбираем самый высокий блок. Перезагрузить после ресайза.
+	function minHeightSection () {
+		let contentLeft = document.querySelector('.content-vertical__left'),
+			contentRight = document.querySelector('.content-vertical__right'),
+			contentLeftHeight = contentLeft.offsetHeight + parseInt(getComputedStyle(contentLeft).marginTop) + parseInt(getComputedStyle(contentLeft).marginBottom),
+			blocks = document.querySelectorAll('.content-vertical__block'),
+			maxHeightBlock = 0;
+
+		blocks.forEach(block => {
+			let heightBlock = block.offsetHeight + parseInt(getComputedStyle(block).marginTop) + parseInt(getComputedStyle(block).marginBottom);
+
+			if (heightBlock > maxHeightBlock && window.innerWidth < 640) {
+				maxHeightBlock = heightBlock;
+				contentRight.style.minHeight = maxHeightBlock + 'px';
+				section.style.minHeight = maxHeightBlock + contentLeftHeight + 'px';
+
+			} else if (heightBlock > maxHeightBlock) {
+				maxHeightBlock = heightBlock;
+				section.style.minHeight = maxHeightBlock + 'px';
+			}
+		})
+	}
+	minHeightSection();
+
+	// при ресайзе пересчитываем и перезаписываем высоту секции
+	window.addEventListener('resize', () => {
+		minHeightSection ();
+	});
+
+
+	// слушатель нажатия на заголовок и вызов функции перемещения к соответствующему блоку
+	listitems.forEach(element => {
+		element.addEventListener('click', () => {
+			let elementNumber = element.getAttribute('listitem-number')
+			blocks.forEach((block, index) => {
+				if (elementNumber-1 === index ) {
+					let ourBlockClass = ".block--" + elementNumber,
+						ourBlock = document.querySelector(ourBlockClass);
+					scrollTo(ourBlock);
+				}
+			})
+		})
+	})
+
+	// самописный скролл внутри дива к нужному нам боку. Со скроллом до этого тестового задания никогда не работал.
+	let blocksContent = document.querySelector('.content-vertical__blocks'),
+		blocks = document.querySelectorAll('.content-vertical__block');
+
+	function scrollTo(idBlock) {
+		if (window.innerWidth < 640) {
+			centerBlock = idBlock.offsetTop - parseInt(getComputedStyle(idBlock).marginTop)/2
+			console.log('window.innerWidth < 640')
+		} else {
+			centerBlock = idBlock.offsetTop - (section.offsetHeight - idBlock.offsetHeight)/2;
+		}
+
+		blocksContent.scroll({
+			top: centerBlock,
+			behavior: 'smooth'
+		})
+	}
+
+
+
+
+</script>
+
+
+{% schema %}
+{
+	"name": "Content, vertical slider",
+	"tag": "section",
+	"settings": [
+		{
+			"type": "text",
+			"id": "header",
+			"label": "Header",
+			"default": "Slider content vertical "
+		},
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Text</p>"
+        }
+	],
+	"blocks": [
+		{
+			"type": "content",
+			"name": "Content",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+                {
+                    "type": "color",
+                    "id": "color_background",
+                    "default": "#11B0BE",
+                    "label": "Background color"
+                },
+				{
+					"type": "range",
+					"id": "opacity_background",
+					"min": 0,
+					"max": 100,
+					"step": 1,
+					"unit": "%",
+					"label": "Opacity background block",
+					"default": 15
+				},
+                {
+					"type": "text",
+					"id": "icon__title",
+					"label": "Title icon",
+					"default": "Title icon"
+				},
+				{
+					"type": "header",
+					"content": "Settings veertical content"
+				},
+				{
+					"type": "select",
+					"id": "icon",
+					"label": "Icon vertical content",
+					"options": [
+						{
+							"value": "",
+							"label": "Empty"
+						},
+						{
+							"value": "icon_doctors",
+							"label": "Doctors"
+						},
+						{
+							"value": "icon_coach",
+							"label": "Coach"
+						},
+						{
+							"value": "icon_phone",
+							"label": "Phone"
+						},
+						{
+							"value": "icon_medication",
+							"label": "Medicine"
+						},
+						{
+							"value": "icon_talk",
+							"label": "Talk"
+						}
+					]
+				},
+                {
+					"type": "text",
+					"id": "content-vertical__block-title",
+					"label": "Title block",
+					"default": "Title block"
+				},
+                {
+					"type": "richtext",
+					"id": "content-vertical__block-description",
+					"label": "Description block",
+					"default": "<p>Our medical team provedens accesss to the widest set of prescriptions on the market, including (but not limited to):<\/p>"
+				},
+                {
+					"type": "richtext",
+					"id": "content-vertical__block-links",
+					"label": "links block",
+					"default": "<p><a href=\"\/products\/plant-caladium\" target=\"_blank\" title=\"Plant Caladium\">Phentermine<\/a><\/p><p><a href=\"\/pages\/contact_page\" target=\"_blank\" title=\"Contact_page\">GLP-1<\/a><\/p><p><a href=\"\/products\/plant-snake\" title=\"Plant Snake\">Metformin<\/a><\/p>"
+				},
+                {
+                    "type": "color",
+                    "id": "color_background_block-links",
+                    "default": "#FDF4DB",
+                    "label": "Background links color"
+                },
+                {
+					"type": "text",
+					"id": "content-vertical__block-paragraph--1",
+					"label": "Paragraph text",
+					"default": "Work directly with our doctors to find the medication right for you"
+				},
+                {
+					"type": "text",
+					"id": "content-vertical__block-paragraph--2",
+					"label": "Paragraph text",
+					"default": "Medication delivered to your door"
+				},
+                {
+					"type": "text",
+					"id": "content-vertical__block-paragraph--3",
+					"label": "Paragraph text",
+					"default": "No insurance requirements"
+				},
+				{
+					"type": "paragraph",
+					"content": "For button show: chouse link and enter button name"
+				},
+				{
+					"type": "url",
+					"id": "content-vertical__button--link",
+					"label": "Button link"
+				},
+				{
+					"type": "text",
+					"id": "content-vertical__button--name",
+					"label": "Button name",
+					"default": "Continue"
+				},
+				{
+					"type": "text",
+					"id": "content-vertical__price",
+					"label": "Price",
+					"default": "Starting at $99/month"
+				}
+
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Content, vertical slider",
+			"blocks": [
+				{
+					"type": "content"
+				},
+				{
+					"type": "content"
+				},
+				{
+					"type": "content"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

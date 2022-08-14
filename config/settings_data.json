@@ -1,19 +1,19 @@
 {
   "current": {
     "colors_solid_button_labels": "#ffffff",
-    "colors_accent_1": "#121212",
+    "colors_accent_1": "#10100e",
     "gradient_accent_1": "",
     "colors_accent_2": "#334fb4",
     "gradient_accent_2": "",
-    "colors_text": "#121212",
-    "colors_outline_button_labels": "#121212",
+    "colors_text": "#10100e",
+    "colors_outline_button_labels": "#10100e",
     "colors_background_1": "#ffffff",
     "gradient_background_1": "",
     "colors_background_2": "#f3f3f3",
     "gradient_background_2": "",
-    "type_header_font": "assistant_n4",
+    "type_header_font": "roboto_n4",
     "heading_scale": 100,
-    "type_body_font": "assistant_n4",
+    "type_body_font": "pt_serif_n4",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -126,6 +126,7 @@
             "type": "announcement",
             "settings": {
               "text": "Welcome to our store",
+              "text_alignment": "center",
               "color_scheme": "background-1",
               "link": ""
             }
@@ -144,9 +145,13 @@
           "logo_width": 90,
           "logo_position": "middle-left",
           "menu": "main-menu",
+          "menu_type_desktop": "dropdown",
           "show_line_separator": true,
           "enable_sticky_header": true,
-          "margin_bottom": 0
+          "mobile_logo_position": "center",
+          "margin_bottom": 0,
+          "padding_top": 20,
+          "padding_bottom": 20
         }
       },
       "footer": {
@@ -205,7 +210,10 @@
           "color_scheme": "background-1"
         }
       }
-    }
+    },
+    "content_for_index": [
+
+    ]
   },
   "presets": {
     "Default": {
