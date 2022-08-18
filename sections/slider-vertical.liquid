@@ -212,7 +212,7 @@
 	changeBackgroundColor ();
 
 
-	// задаём минимальную высоту секции для полного отображения контента блока, выбираем самый высокий блок. Перезагрузить после ресайза.
+	// задаём минимальную высоту секции для полного отображения контента блока, выбираем самый высокий блок.
 	function minHeightSection () {
 		let contentLeft = document.querySelector('.content-vertical__left'),
 			contentRight = document.querySelector('.content-vertical__right'),
@@ -262,8 +262,11 @@
 
 	function scrollTo(idBlock) {
 		if (window.innerWidth < 640) {
-			centerBlock = idBlock.offsetTop - parseInt(getComputedStyle(idBlock).marginTop)/2
-			console.log('window.innerWidth < 640')
+			if (idBlock.classList.contains('block--1')) {
+				centerBlock = idBlock.offsetTop - parseInt(getComputedStyle(idBlock).marginTop)
+			} else {
+				centerBlock = idBlock.offsetTop - parseInt(getComputedStyle(idBlock).marginTop)/2
+			}
 		} else {
 			centerBlock = idBlock.offsetTop - (section.offsetHeight - idBlock.offsetHeight)/2;
 		}
