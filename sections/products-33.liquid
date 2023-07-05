@@ -1,0 +1,391 @@
+{{ 'products-33.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top_mobile | append: "px" }};
+    margin-bottom: {{ section.settings.margin_bottom_mobile | append: "px" }};
+    padding-top: {{ section.settings.padding_top_mobile | append: "px" }};
+    padding-bottom: {{ section.settings.padding_bottom_mobile | append: "px" }};
+
+    background-color: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .container {
+    max-width: {{ section.settings.max_width }}px;
+  }
+
+  @media screen and (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top_desktop | append: "px" }};
+      margin-bottom: {{ section.settings.margin_bottom_desktop | append: "px" }};
+      padding-top: {{ section.settings.padding_top_desktop | append: "px" }};
+      padding-bottom: {{ section.settings.padding_bottom_desktop | append: "px" }};
+    }
+  }
+</style>
+
+{% liquid
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+%}
+
+<div data-section-type="related-products" data-section-id="{{ section.id }}">
+  <div class="related-products">
+    <div class="container">
+      <div class="related-products__content">
+        {% if title %}
+          <div class="related-products__title">
+            <h4>{{ title }}</h4>
+          </div>
+        {% endif %}
+
+        {% if subtitle %}
+          <div class="related-products__sub-title">
+            <p>{{ subtitle }}</p>
+          </div>
+        {% endif %}
+      </div>
+      {% comment %} <h1>{{ section.blocks.size }}</h1> {% endcomment %}
+      <div class="related-products__products {% if section.blocks.size == 3%}three_pcs{% endif%} {% if section.settings.one_row%}on{% endif%} ">
+        {% for block in section.blocks %}
+          {% liquid
+            assign _image = block.settings.img
+            assign _subtitle = block.settings.text
+            assign _button_title = block.settings.button_text
+            assign _badge = block.settings.badge
+            assign _sale = block.settings.sale
+            assign _border = block.settings.border
+            assign _add_content = block.settings.add_content
+            assign product = all_products[block.settings.product]
+          %}
+
+          <div class="related-products__product-block block--{{ forloop.index }}">
+
+            {% style %}
+            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} {
+              background: {{ block.settings.background }};
+              {% if _border != blank %}
+                border: 2px solid {{ block.settings.border_color }};
+              {% endif %}
+            }
+            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} .related-products__badge {
+              background: {{ block.settings.badge_bg }};
+              font-size: {{ block.settings.badge_height }}px;
+            }
+            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} .related-products__product-description p {
+              font-size: {{ block.settings.text_height }}px;
+            }
+            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} .related-products__sale{
+              font-size: {{ block.settings.sale_height }}px;
+              color: {{ block.settings.sale_color }};
+            }
+            {% endstyle %}
+
+            {% if _badge != blank %}
+              <span class="related-products__badge">{{ _badge }}</span>
+            {% endif %}
+            {% if _sale != blank %}
+              <div class="related-products__product-description"> {{ _subtitle }} </div>
+            {% endif %}
+
+            {% if _sale != blank %}
+              <span class="related-products__sale">{{ _sale }}</span>
+            {% endif %}
+
+            <div class="related-products__product-image">
+              <a href="{{ product.url }}">
+                {% if _image != blank %}
+                  <img class="img" src="{{ _image.src | img_url: '500x500', crop: 'center' }}" alt="{{ _image.alt | escape }}">
+                {% elsif product.featured_image != blank %}
+                  <img class="img" src="{{ product.featured_image.src | img_url: '500x500', crop: 'center' }}" alt="{{ _image.alt | escape }}">
+                {% endif %}
+              </a>
+            </div>
+            <div class="related-products__product-title">
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </div>
+
+            <div class="related-products__product-price">
+              {% if product.compare_at_price != blank %}
+                <span class="price--old">{{ product.compare_at_price | money }}</span>
+              {% endif %}
+              <span class="price--sale">{{- product.price | money -}}</span>
+            </div>
+
+            <div class="related-products__product-button">
+              <div class="btn btn-primary related-products__formButton">
+                {{- _button_title -}}
+              </div>
+            </div>
+
+            {% if _add_content != blank %}
+              <div class="related-products__product-add-content"> {{ _add_content }} </div>
+            {% endif %}
+
+            <select
+              data-product-handle="{{- product.handle -}}"
+              name="id"
+              class="productIdSelect--js"
+              hidden
+            >
+              {%- for variant in product.variants -%}
+                <option
+                  class="productSection__variantOption customSelect__items p"
+                  {% if variant.available != true %}
+                    disabled
+                  {% endif %}
+                  value="{{- variant.id -}}"
+                >
+                  {{- variant.title -}}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <a class="related-products__checkout" hidden href="/checkout">checkout</a>
+</div>
+
+
+<script src="{{ 'products-33.js' | asset_url }}" defer="defer"></script>
+
+
+{% schema %}
+{
+  "name": "Related products",
+  "class": "related-products__main",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Related products"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color section",
+      "default": "#ffecfe"
+    },
+    {
+      "type": "number",
+      "id": "max_width",
+      "label": "Max width",
+      "default": 1200
+    },
+    {
+      "type": "checkbox",
+      "id": "one_row",
+      "default": true,
+      "label": "Enable border"
+    },
+    {
+      "type": "header",
+      "content": "Section Indent (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Section Indent (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Product",
+      "type": "product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background color block",
+          "default": "#e9efdf"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Perfect Bundle</p><p><strong>GET 2 MASK</strong></p>"
+        },
+        {
+          "type": "range",
+          "id": "text_height",
+          "min": 12,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Description size",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Badge Text"
+        },
+        {
+          "type": "range",
+          "id": "badge_height",
+          "min": 12,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Badge size",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "badge_bg",
+          "label": "Background Badge",
+          "default": "#FF8787"
+        },
+        {
+          "type": "checkbox",
+          "id": "border",
+          "default": true,
+          "label": "Enable border"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#8f00ff"
+        },
+        {
+          "type": "text",
+          "id": "sale",
+          "label": "Sale %",
+          "default": "SAVE 65%"
+        },
+        
+        {
+          "type": "color",
+          "id": "sale_color",
+          "label": "Sale color",
+          "default": "#8f00ff"
+        },
+        {
+          "type": "range",
+          "id": "sale_height",
+          "min": 12,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Sale size",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "I WANT THIS"
+        },
+        {
+          "type": "html",
+          "id": "add_content",
+          "label": "HTML content",
+          "default": "<svg style='color: red' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-heart' viewBox='0 0 16 16'> <path d='m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z' fill='red'></path> </svg>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related products",
+      "settings": {
+        "title": "Related products"
+      }
+    }
+  ]
+}
+{% endschema %}
