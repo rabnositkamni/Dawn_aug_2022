@@ -60,6 +60,7 @@
   top: 0;
   left: 0;
   right: 0;
+  line-height: 1.8;
   transform: translateY(-50%);
 }
 .related-products .related-products__product-block .related-products__product-image {
@@ -112,6 +113,7 @@
 }
 .related-products .related-products__product-block .related-products__sale {
   font-weight: 700;
+  margin-bottom: 10px;
 }
 .related-products .related-products__product-block .related-products__product-price {
   display: flex;
@@ -183,23 +185,14 @@
 .related-products #shopify-section-related-productss {
   position: relative;
 }
+.related-products .related-products__product-button {
+  margin: 10px 25px 15px;
+}
 .related-products .btn-primary {
   display: block;
   padding: 14px 48px;
-  margin: 10px 25px 15px;
-  font-size: 13px;
-  line-height: 0.975em;
-  letter-spacing: -0.02em;
-  background: #789942;
-  border: 1px solid #789942;
   padding: 15px 42px;
   text-decoration: none;
-  color: black;
+  width: 100%;
   cursor: pointer;
-}
-@media screen and (min-width: 922px) {
-  .related-products .btn-primary:hover {
-    color: #789942;
-    background: #fff;
-  }
 }
