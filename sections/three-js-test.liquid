@@ -1,0 +1,295 @@
+{{ 'products-33.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top_mobile | append: "px" }};
+    margin-bottom: {{ section.settings.margin_bottom_mobile | append: "px" }};
+    padding-top: {{ section.settings.padding_top_mobile | append: "px" }};
+    padding-bottom: {{ section.settings.padding_bottom_mobile | append: "px" }};
+
+    background-color: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .container {
+    max-width: {{ section.settings.max_width }}px;
+  }
+
+  @media screen and (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top_desktop | append: "px" }};
+      margin-bottom: {{ section.settings.margin_bottom_desktop | append: "px" }};
+      padding-top: {{ section.settings.padding_top_desktop | append: "px" }};
+      padding-bottom: {{ section.settings.padding_bottom_desktop | append: "px" }};
+    }
+  }
+</style>
+
+{% liquid
+  assign title = section.settings.title
+  assign subtitle = section.settings.subtitle
+%}
+
+<div data-section-type="related-products" data-section-id="{{ section.id }}">
+  <div class="related-products">
+    <div class="container">
+      <div class="related-products__content">
+        {% if title %}
+          <div class="related-products__title">
+            <h4>{{ title }}</h4>
+          </div>
+        {% endif %}
+
+        {% if subtitle %}
+          <div class="related-products__sub-title">
+            <p>{{ subtitle }}</p>
+          </div>
+        {% endif %}
+      </div>
+
+        <canvas class="canvas"></canvas>
+    </div>
+  </div>
+  <a class="related-products__checkout" hidden href="/checkout">checkout</a>
+</div>
+
+
+<script src="{{ 'three-js-test.js' | asset_url }}" defer="defer"></script>
+
+
+{% schema %}
+{
+  "name": "Three js test",
+  "class": "related-products__main",
+  "max_blocks": 16,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Related products"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color section",
+      "default": "#ffecfe"
+    },
+    {
+      "type": "number",
+      "id": "max_width",
+      "label": "Max width",
+      "default": 1200
+    },
+    {
+      "type": "checkbox",
+      "id": "one_row",
+      "default": true,
+      "label": "Enable border"
+    },
+    {
+      "type": "header",
+      "content": "Section Indent (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Section Indent (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Product",
+      "type": "product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img",
+          "label": "Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background color block",
+          "default": "#e9efdf"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Perfect Bundle</p><p><strong>GET 2 MASK</strong></p>"
+        },
+        {
+          "type": "range",
+          "id": "text_height",
+          "min": 12,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Description size",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Badge Text"
+        },
+        {
+          "type": "range",
+          "id": "badge_height",
+          "min": 12,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Badge size",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "badge_bg",
+          "label": "Background Badge",
+          "default": "#FF8787"
+        },
+        {
+          "type": "checkbox",
+          "id": "border",
+          "default": true,
+          "label": "Enable border"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#8f00ff"
+        },
+        {
+          "type": "text",
+          "id": "sale",
+          "label": "Sale %",
+          "default": "SAVE 65%"
+        },
+        
+        {
+          "type": "color",
+          "id": "sale_color",
+          "label": "Sale color",
+          "default": "#8f00ff"
+        },
+        {
+          "type": "range",
+          "id": "sale_height",
+          "min": 12,
+          "max": 56,
+          "step": 1,
+          "unit": "px",
+          "label": "Sale size",
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "I WANT THIS"
+        },
+        {
+          "type": "html",
+          "id": "add_content",
+          "label": "HTML content",
+          "default": "<svg style='color: red' xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-heart' viewBox='0 0 16 16'> <path d='m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z' fill='red'></path> </svg>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Three-js-test",
+      "settings": {
+        "title": "Three js test"
+      }
+    }
+  ]
+}
+{% endschema %}
