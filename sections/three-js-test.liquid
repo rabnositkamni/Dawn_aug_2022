@@ -44,116 +44,20 @@
           </div>
         {% endif %}
       </div>
-      {% comment %} <h1>{{ section.blocks.size }}</h1> {% endcomment %}
-      <div class="related-products__products {% if section.blocks.size == 3%}three_pcs{% endif%} {% if section.settings.one_row%}on{% endif%} ">
-        {% for block in section.blocks %}
-          {% liquid
-            assign _image = block.settings.img
-            assign _subtitle = block.settings.text
-            assign _button_title = block.settings.button_text
-            assign _badge = block.settings.badge
-            assign _sale = block.settings.sale
-            assign _border = block.settings.border
-            assign _add_content = block.settings.add_content
-            assign product = all_products[block.settings.product]
-          %}
 
-          <div class="related-products__product-block block--{{ forloop.index }}">
-
-            {% style %}
-            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} {
-              background: {{ block.settings.background }};
-              {% if _border != blank %}
-                border: 2px solid {{ block.settings.border_color }};
-              {% endif %}
-            }
-            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} .related-products__badge {
-              background: {{ block.settings.badge_bg }};
-              font-size: {{ block.settings.badge_height }}px;
-            }
-            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} .related-products__product-description p {
-              font-size: {{ block.settings.text_height }}px;
-            }
-            #shopify-section-{{ section.id }} .related-products__product-block.block--{{ forloop.index }} .related-products__sale{
-              font-size: {{ block.settings.sale_height }}px;
-              color: {{ block.settings.sale_color }};
-            }
-            {% endstyle %}
-
-            {% if _badge != blank %}
-              <span class="related-products__badge">{{ _badge }}</span>
-            {% endif %}
-            {% if _sale != blank %}
-              <div class="related-products__product-description"> {{ _subtitle }} </div>
-            {% endif %}
-
-            {% if _sale != blank %}
-              <span class="related-products__sale">{{ _sale }}</span>
-            {% endif %}
-
-            <div class="related-products__product-image">
-              <a href="{{ product.url }}">
-                {% if _image != blank %}
-                  <img class="img" src="{{ _image.src | img_url: '500x500', crop: 'center' }}" alt="{{ _image.alt | escape }}">
-                {% elsif product.featured_image != blank %}
-                  <img class="img" src="{{ product.featured_image.src | img_url: '500x500', crop: 'center' }}" alt="{{ _image.alt | escape }}">
-                {% endif %}
-              </a>
-            </div>
-            <div class="related-products__product-title">
-              <a href="{{ product.url }}">{{ product.title }}</a>
-            </div>
-
-            <div class="related-products__product-price">
-              {% if product.compare_at_price != blank %}
-                <span class="price--old">{{ product.compare_at_price | money }}</span>
-              {% endif %}
-              <span class="price--sale">{{- product.price | money -}}</span>
-            </div>
-
-            <div class="related-products__product-button">
-              <div class="btn button btn-primary related-products__formButton">
-                {{- _button_title -}}
-              </div>
-            </div>
-
-            {% if _add_content != blank %}
-              <div class="related-products__product-add-content"> {{ _add_content }} </div>
-            {% endif %}
-
-            <select
-              data-product-handle="{{- product.handle -}}"
-              name="id"
-              class="productIdSelect--js"
-              hidden
-            >
-              {%- for variant in product.variants -%}
-                <option
-                  class="productSection__variantOption customSelect__items p"
-                  {% if variant.available != true %}
-                    disabled
-                  {% endif %}
-                  value="{{- variant.id -}}"
-                >
-                  {{- variant.title -}}
-                </option>
-              {%- endfor -%}
-            </select>
-          </div>
-        {% endfor %}
-      </div>
+        <canvas class="canvas"></canvas>
     </div>
   </div>
   <a class="related-products__checkout" hidden href="/checkout">checkout</a>
 </div>
 
 
-<script src="{{ 'products-33.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'three-js-test.js' | asset_url }}" defer="defer"></script>
 
 
 {% schema %}
 {
-  "name": "Related products",
+  "name": "Three js test",
   "class": "related-products__main",
   "max_blocks": 16,
   "settings": [
@@ -381,9 +285,9 @@
   ],
   "presets": [
     {
-      "name": "Related products",
+      "name": "Three-js-test",
       "settings": {
-        "title": "Related products"
+        "title": "Three js test"
       }
     }
   ]
