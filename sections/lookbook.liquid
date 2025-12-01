@@ -1,0 +1,410 @@
+{% liquid
+  assign image = section.settings.image
+  assign new_price_img = section.settings.new_price_img
+  assign title = section.settings.title
+  assign description = section.settings.description
+%}
+{{ 'section-lookbook.css' | asset_url | stylesheet_tag }}
+
+
+<style>
+  #shopify-section-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top_mobile | append: "px" }};
+    margin-bottom: {{ section.settings.margin_bottom_mobile | append: "px" }};
+
+    .card-popup__number {
+      background: {{ section.settings.color_point_inactive_mob }};
+    }
+    .lookbook__block-point {
+      &.active {
+        .card-popup__number {
+          background: {{ section.settings.color_point_active_mob }};
+        }
+      }
+    }
+    .lookbook__cards {
+      .card-popup__number {
+        background: {{ section.settings.color_point_active_mob }};
+      }
+    }
+
+  }
+  #shopify-section-{{ section.id }} [data-section-type="lookbook"] {
+    padding-top: {{ section.settings.padding_top_mobile | append: "px" }};
+    padding-bottom: {{ section.settings.padding_bottom_mobile | append: "px" }};
+    background: {{ section.settings.background }};
+  }
+
+  @media screen and (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      margin-top: {{ section.settings.margin_top_desktop | append: "px" }};
+      margin-bottom: {{ section.settings.margin_bottom_desktop | append: "px" }};
+
+      .card-popup__number, .lookbook__cards .card-popup__number{
+        background: {{ section.settings.color_point_desk }};
+      }
+    }
+    #shopify-section-{{ section.id }} [data-section-type="lookbook"] {
+      padding-top: {{ section.settings.padding_top_desktop | append: "px" }};
+      padding-bottom: {{ section.settings.padding_bottom_desktop | append: "px" }};
+    }
+  }
+
+</style>
+
+
+<div data-section-type="lookbook" data-section-id="{{ section.id }}">
+  <div class="lookbook-wrap">
+    <div class="lookbook__content-wrap">
+      <div class="lookbook__content">
+
+        <div class="content__left">
+          {% if image != blank %}
+            {%- liquid
+              assign image_height = image.width | divided_by: image.aspect_ratio
+              assign widths = '450, 660, 900, 1500'
+            -%}
+            {{
+              image
+              | image_url: width: 1500
+              | image_tag:
+                width: image.width,
+                height: image_height,
+                class: "lookbook__img",
+                sizes: "100vw",
+                widths: widths,
+                fetchpriority: "auto"
+            }}
+          {% endif %}
+
+          {% if new_price_img != blank %}
+            {%- liquid
+              assign image_height = new_price_img.width | divided_by: new_price_img.aspect_ratio
+              assign widths = '400'
+            -%}
+            {{
+              new_price_img
+              | image_url: width: 400
+              | image_tag:
+                width: new_price_img.width,
+                height: image_height,
+                class: "lookbook__new_price",
+                sizes: "100vw",
+                widths: widths,
+                fetchpriority: "auto"
+            }}
+          {% endif %}
+
+
+
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'card' -%}
+                {% if block.settings.product != blank %}
+                  {% liquid
+                    assign item_x = block.settings.item_x
+                    assign item_y = block.settings.item_y
+                  %}
+
+                <div class="lookbook__block-point block--{{ block.id }}" data-id-block="{{ block.id }}">
+
+                  <span class="card-popup__number">{{ forloop.index }}</span>
+                  <style>
+                    .block--{{ block.id }} {
+                      left: {{ item_x | append: "%" }};
+                      top: {{ item_y | append: "%" }};
+                    }
+                  </style>
+                </div>
+                {% endif %}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="content__right">
+          <h3 class="lookbook__title">{{ title }}</h3>
+          <h5 class="lookbook__description">{{ description }}</h5>
+
+          <div  class="lookbook__cards">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'card' -%}
+                  {% if block.settings.product != blank %}
+                    {% liquid
+                      assign product = block.settings.product
+                      assign title = block.settings.title
+                      assign price = block.settings.price
+                      assign additional_text = block.settings.additional_text
+                    %}
+                    <div  class="lookbook__block-card block--{{ block.id }} ">
+                      <span class="card-popup__number">{{ forloop.index }}</span>
+                      <a href="{{ product.url }}">{{ title }}</a>
+                      <span class="lookbook__block-price">{{ price }}</span>
+                      <span class="lookbook__block-additional-text">{{ additional_text }}</span>
+                    </div>
+                  {% endif %}
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const sectionLookbook = document.querySelector("[data-section-type='lookbook']");
+  if (sectionLookbook) {
+
+    const cards = sectionLookbook.querySelectorAll(".lookbook__cards");
+    const points = sectionLookbook.querySelectorAll(".lookbook__block-point");
+    let blocksContent = sectionLookbook.querySelector('.lookbook__cards');
+    // console.log(blocksContent);
+
+    if (window.innerWidth < 992) {
+
+      points.forEach((point, index) => {
+        // console.log(index);
+        point.addEventListener('click', () => {
+          console.log(point);
+
+
+          if (sectionLookbook.querySelector('.lookbook__block-point.active')) {
+            sectionLookbook.querySelector('.lookbook__block-point.active').classList.remove("active");
+          }
+
+          point.classList.add("active");
+
+          let pointId = point.getAttribute('data-id-block');
+
+          let ourBlockClass = ".content__right .block--" + pointId;
+          let ourBlock = document.querySelector(ourBlockClass);
+          scrollTo(ourBlock);
+        })
+
+        if (index == 0) {
+          point.click();
+        }
+      })
+
+      function scrollTo(idBlock) {
+        const elementPosition = idBlock.getBoundingClientRect().top - blocksContent.getBoundingClientRect().top + blocksContent.scrollTop;
+
+        const elementHeight = idBlock.offsetHeight;
+        const containerHeight = blocksContent.offsetHeight;
+        const scrollToPosition = elementPosition - (containerHeight / 2) + (elementHeight / 2);
+
+        blocksContent.scrollTo({
+          top: scrollToPosition,
+          behavior: 'smooth'
+        });
+      }
+
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "class": "lookbook",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color section",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "color_point_desk",
+      "label": "Color points desk",
+      "default": "#ff0000"
+    },
+    {
+      "type": "color",
+      "id": "color_point_active_mob",
+      "label": "Color points active mob",
+      "default": "#00355B"
+    },
+    {
+      "type": "color",
+      "id": "color_point_inactive_mob",
+      "label": "Color points inactive mob",
+      "default": "#C6C6C8"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "The image must be 1500x2100 or more. Aspect ratio as in design - 0.715"
+    },
+    {
+      "type": "image_picker",
+      "id": "new_price_img",
+      "label": "Price on image"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>TYEARS LATER, STILL GOOD AS NEW</p>"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "It saves you a fortune. The last knife set you’ll ever have to buy."
+    },
+    {
+      "type": "header",
+      "content": "Section Indent (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Section Indent (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "<p>9” Serrated Bread</p>"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$199"
+        },
+        {
+          "type": "text",
+          "id": "additional_text",
+          "label": "Additional text (only desktop)",
+          "default": "individually"
+        },
+        {
+					"type":    "range",
+					"id":      "item_x",
+					"min":     1,
+					"max":     99,
+					"step":    1,
+					"unit":    "%",
+					"label":   "Horizontal position point",
+					"default": 50
+				},
+				{
+					"type":    "range",
+					"id":      "item_y",
+					"min":     1,
+					"max":     99,
+					"step":    1,
+					"unit":    "%",
+					"label":   "Vertical position point",
+					"default": 50
+				}
+      ]
+    }
+
+  ],
+  "presets": [
+    {
+      "name": "Lookbook"
+    },
+  ]
+}
+{% endschema %}

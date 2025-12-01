@@ -45,14 +45,25 @@
         {% endif %}
       </div>
 
-        <canvas class="canvas"></canvas>
+      <canvas class="canvas"></canvas>
+      <canvas class="canvas-new"></canvas>
     </div>
   </div>
   <a class="related-products__checkout" hidden href="/checkout">checkout</a>
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+
+
 <script src="{{ 'three-js-test.js' | asset_url }}" defer="defer"></script>
+
+
+
+
 
 
 {% schema %}

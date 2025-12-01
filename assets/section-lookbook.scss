@@ -1,0 +1,208 @@
+[data-section-type="lookbook"] {
+
+
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+
+
+
+	.lookbook__content-wrap {
+        padding: 0;
+        max-width: 1400px;
+        margin: 0 auto;
+        @media screen and (min-width: 992px) {
+            padding: 0 120px 0 20px;
+        }
+    }
+
+    .lookbook__content {
+        position: relative;
+        @media screen and (min-width: 992px) {
+            display: grid;
+            gap: 50px;
+            grid-template-columns: 1.66fr 1fr;
+        }
+
+        .content__left {
+            position: relative;
+            line-height: 0;
+            height: fit-content;
+            margin: auto 0;
+
+            .lookbook__img {
+                width: 100%;
+                object-fit: contain;
+                height: auto;
+            }
+            .lookbook__new_price {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width: 150px;
+                object-fit: contain;
+                height: auto;
+                @media screen and (min-width: 992px) {
+                    top: 25px;
+                    right: 40px;
+                    width: 200px;
+                }
+            }
+
+            .lookbook__block-point {
+                cursor: pointer;
+                position: absolute;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+                &.active {
+                    .card-popup__number {
+                        // background-color: black;
+                    }
+                }
+
+
+                .card-popup__number {
+                    font-size: 9.5px;
+                    @media screen and (max-width: 991px) {
+                        // background-color: grey;
+                    }
+                    @media screen and (min-width: 992px) {
+                        font-size: 14.25px;
+                        // background-color: rgb(0, 0, 0);
+                    }
+                }
+            }
+        }
+        .content__right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+            @media screen and (min-width: 992px) {
+                padding: 0;
+            }
+
+            .lookbook__title {
+                font-size: 27px;
+                font-weight: 700;
+                @media screen and (min-width: 992px) {
+                    font-size: 40px;
+                }
+
+                strong {
+                    color: goldenrod;
+                }
+            }
+
+            .lookbook__description {
+                color: #525252;
+                font-style: 20px;
+                @media screen and (min-width: 992px) {
+                    color: #000000;
+                }
+            }
+
+            .lookbook__cards {
+
+                max-height: 75px;
+                overflow: scroll;
+                position: relative;
+                scrollbar-width: none;
+                order: -1;
+                @media screen and (min-width: 992px) {
+                    max-height: none;
+                    order: 0;
+                }
+
+
+
+                .lookbook__block-card {
+                    display: flex;
+                    align-items: center;
+                    gap: 7px;
+                    margin: 30px 0;
+                    @media screen and (min-width: 992px) {
+                        margin: 0;
+                    }
+
+                    .card-popup__number {
+                        width: 25px;
+                        min-width: 25px;
+                        height: 25px;
+                        font-size: 12px;
+                        @media screen and (min-width: 992px) {
+                            width: 26px;
+                            min-width: 26px;
+                            height: 26px;
+                            font-size: 14px;
+                        }
+                    }
+
+                    a {
+                        text-decoration: none;
+                        line-height: 1.5em;
+                        color: #000000;
+                        transition: 0.15s;
+                        font-weight: 700;
+
+                        p {
+                            strong {
+                                color: goldenrod;
+                            }
+                        }
+
+
+                        @media screen and (min-width: 992px) {
+                            &:hover {
+                                color: #ff0000;
+                            }
+                        }
+                    }
+
+                    .lookbook__block-price {
+                        margin-left: auto;
+                        font-weight: 700;
+                    }
+                    .lookbook__block-additional-text {
+                        font-weight: 300;
+                        display: none;
+                        @media screen and (min-width: 992px) {
+                            display: block;
+                        }
+                    }
+
+                    +.lookbook__block-card {
+                        @media screen and (min-width: 992px) {
+                            border-top: 1px solid #3A3A3A;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        .card-popup__number {
+            width: 20px;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 99px;
+            // background-color: rgb(0, 0, 0);
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @media screen and (min-width: 992px) {
+                width: 30px;
+                min-width: 30px;
+                height: 30px;
+            }
+        }
+
+    }
+
+}

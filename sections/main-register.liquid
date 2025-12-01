@@ -127,6 +127,40 @@
         {{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.
       </span>
     {%- endif -%}
+
+
+
+
+
+    <div>
+      <label for="customer_birthday">Birthday</label>
+      <input type="date" name="customer[note][Birthday]" id="customer_birthday" required>
+    </div>
+    
+    <div>
+      <label for="customer_allergies">Allergies</label>
+      <input type="text" name="customer[note][Allergies]" id="customer_allergies">
+    </div>
+    
+    <div>
+      <label for="customer_test">Test</label>
+      <input type="text" name="customer[note][Test]" id="customer_test">
+    </div>
+    
+    <div>
+      <label for="customer_messanger">Messanger</label>
+      <input type="text" name="customer[note][Messanger]" id="customer_messanger">
+    </div>
+    
+    <div>
+      <label for="customer_phone">Phone</label>
+      <input type="text" name="customer[note][Phone]" id="customer_phone">
+    </div>
+
+
+
+
+
     <button>
       {{ 'customer.register.submit' | t }}
     </button>

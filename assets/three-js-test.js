@@ -103,9 +103,9 @@ renderer.render(scene, camera);
 canvas.addEventListener("wheel", event => {
     event.preventDefault();
     if (event.deltaX > 0 && Math.abs(event.deltaY) == 0) {
-        mesh.rotation.y += 0.1;
-    } else if (event.deltaX < 0 && Math.abs(event.deltaY) == 0) {
         mesh.rotation.y -= 0.1;
+    } else if (event.deltaX < 0 && Math.abs(event.deltaY) == 0) {
+        mesh.rotation.y += 0.1;
     }
 
     if (event.deltaY > 0 && Math.abs(event.deltaX) == 0) {
@@ -126,3 +126,96 @@ canvas.addEventListener("wheel", event => {
 
 
 
+function GLTFloader() {
+    // Одна из настроек отрисовщика - место где будет рендер происходить
+    const canvas = document.querySelector(".canvas-new");
+
+
+    // let ctx = canvas.getContext('2d');
+    // ctx.rect(50, 50, 100, 100);
+    // ctx.fillStyle = 'red';
+    // ctx.fill();
+
+    // Настройка сцены, камеры и рендера
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+    // Создаём объект рендера
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+
+    renderer.setClearColor(0x000000, 0); // Абсолютная прозрачность
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    // document.body.appendChild(renderer.domElement);
+
+    // Настройка управления камерой
+    // const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    // Добавление света
+    const ambientLight = new THREE.AmbientLight(0x404040); // мягкий белый свет
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // направленный свет
+    directionalLight.position.set(1, 1, 1).normalize();
+    scene.add(directionalLight);
+
+    // Загрузка 3D модели
+    const loader = new THREE.GLTFLoader();
+    // loader.load('https://cdn.shopify.com/3d/models/788e97c5f9ac355f/AnisotropyBarnLamp.glb', (gltf) => {
+    loader.load('https://dl.polyhaven.org/file/ph-assets/3d-models/robot/robot.glb', (gltf) => {
+        scene.add(gltf.scene);
+        gltf.scene.position.set(0, 0, 0); // Позиция модели
+        gltf.scene.scale.set(1, 1, 1); // Масштаб модели
+    }, undefined, (error) => {
+        console.error(error);
+    });
+
+    // Настройка камеры
+    camera.position.z = 2;
+
+    // Функция анимации
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // controls.update(); // Обновление управления
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+
+
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+        // Получаем текущее значение прокрутки по вертикали
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // Определяем направление прокрутки
+        if (currentScrollTop > lastScrollTop) {
+            console.log('Прокрутка вниз');
+            scene.rotation.y = 0.01 * currentScrollTop;
+        } else if (currentScrollTop < lastScrollTop) {
+            console.log('Прокрутка вверх');
+            scene.rotation.y = 0.01 * currentScrollTop;
+        }
+
+        console.log(currentScrollTop);
+
+        lastScrollTop = currentScrollTop;
+
+        // Обновляем последнее значение прокрутки
+    });
+
+
+
+
+
+
+    // Обработка изменения размера окна
+    window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+    });
+}
+GLTFloader();

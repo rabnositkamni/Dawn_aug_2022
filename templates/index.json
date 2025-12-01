@@ -1,7 +1,207 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
+    "lookbook_rY6ycP": {
+      "type": "lookbook",
+      "blocks": {
+        "card_aP347U": {
+          "type": "card",
+          "settings": {
+            "product": "plant-bromeliad",
+            "title": "<p>Handmade Acacia Wood Block</p>",
+            "price": "$100",
+            "additional_text": "individually",
+            "item_x": 11,
+            "item_y": 81
+          }
+        },
+        "card_4N74Tm": {
+          "type": "card",
+          "settings": {
+            "product": "plant-agave",
+            "title": "<p>9” SerratedBread</p>",
+            "price": "$89",
+            "additional_text": "value",
+            "item_x": 61,
+            "item_y": 16
+          }
+        },
+        "card_x9NAtg": {
+          "type": "card",
+          "settings": {
+            "product": "plant-hydrangea-mophead",
+            "title": "<p>7\" Santoku Knife</p>",
+            "price": "$99",
+            "additional_text": "individually",
+            "item_x": 10,
+            "item_y": 50
+          }
+        },
+        "card_pTWmgn": {
+          "type": "card",
+          "settings": {
+            "product": "plant-hydrangea-mophead-blue",
+            "title": "<p>8” Chef’s Knife</p>",
+            "price": "$99",
+            "additional_text": "individually",
+            "item_x": 50,
+            "item_y": 77
+          }
+        },
+        "card_tBnMJP": {
+          "type": "card",
+          "settings": {
+            "product": "plant-agave",
+            "title": "<p>9” Slicing & Carving</p>",
+            "price": "$119",
+            "additional_text": "value",
+            "item_x": 66,
+            "item_y": 97
+          }
+        },
+        "card_UHbBkP": {
+          "type": "card",
+          "settings": {
+            "product": "plant-rosemary",
+            "title": "<p>8.5\" Kiritsuke Chef Knife</p>",
+            "price": "$99",
+            "additional_text": "individually",
+            "item_x": 17,
+            "item_y": 16
+          }
+        },
+        "card_4DJnmD": {
+          "type": "card",
+          "settings": {
+            "product": "plant-petunia",
+            "title": "<p>7\" Nakiri Knife</p>",
+            "price": "$99",
+            "additional_text": "individually",
+            "item_x": 81,
+            "item_y": 76
+          }
+        },
+        "card_ViebaW": {
+          "type": "card",
+          "settings": {
+            "product": "plant-bromeliad",
+            "title": "<p>6\" Boning Knife</p>",
+            "price": "$99",
+            "additional_text": "individually",
+            "item_x": 25,
+            "item_y": 30
+          }
+        },
+        "card_LFPrFV": {
+          "type": "card",
+          "settings": {
+            "product": "plant-petunia",
+            "title": "<p>2.75\" Bird's Beak Paring</p>",
+            "price": "$39",
+            "additional_text": "individually",
+            "item_x": 71,
+            "item_y": 19
+          }
+        },
+        "card_Y49Dhd": {
+          "type": "card",
+          "settings": {
+            "product": "plant-rosemary",
+            "title": "<p>3.5\" Paring Knife</p>",
+            "price": "$39",
+            "additional_text": "individually",
+            "item_x": 9,
+            "item_y": 93
+          }
+        },
+        "card_eWMKAA": {
+          "type": "card",
+          "settings": {
+            "product": "plant-snake",
+            "title": "<p>6\" Serrated Utility Knife</p>",
+            "price": "$69",
+            "additional_text": "value",
+            "item_x": 96,
+            "item_y": 93
+          }
+        },
+        "card_yr4Dgp": {
+          "type": "card",
+          "settings": {
+            "product": "plant-bromeliad",
+            "title": "<p>6.5\" Utility Knife</p>",
+            "price": "$59",
+            "additional_text": "individually",
+            "item_x": 2,
+            "item_y": 28
+          }
+        },
+        "card_QrXVee": {
+          "type": "card",
+          "settings": {
+            "product": "plant-red-poinsettia",
+            "title": "<p><strong>6x</strong> 5\" Straight EdgeSteak Knives</p>",
+            "price": "$169",
+            "additional_text": "value",
+            "item_x": 10,
+            "item_y": 5
+          }
+        },
+        "card_NipynD": {
+          "type": "card",
+          "settings": {
+            "product": "plant-succulent-morning-beauty",
+            "title": "<p>10\" Gladiator SeriesHoning Steel</p>",
+            "price": "$69",
+            "additional_text": "individually",
+            "item_x": 48,
+            "item_y": 85
+          }
+        }
+      },
+      "block_order": [
+        "card_aP347U",
+        "card_4N74Tm",
+        "card_x9NAtg",
+        "card_pTWmgn",
+        "card_tBnMJP",
+        "card_UHbBkP",
+        "card_4DJnmD",
+        "card_ViebaW",
+        "card_LFPrFV",
+        "card_Y49Dhd",
+        "card_eWMKAA",
+        "card_yr4Dgp",
+        "card_QrXVee",
+        "card_NipynD"
+      ],
+      "settings": {
+        "background": "#f4f4f4",
+        "image": "shopify://shop_images/Block_wknives_1.png",
+        "new_price_img": "shopify://shop_images/Group_605_2.png",
+        "title": "<p><strong>TYEARS LATER</strong>, STILL GOOD AS NEW</p>",
+        "description": "In an era where privacy is paramount",
+        "margin_top_mobile": 20,
+        "margin_bottom_mobile": 20,
+        "padding_top_mobile": 20,
+        "padding_bottom_mobile": 20,
+        "margin_top_desktop": 30,
+        "margin_bottom_desktop": 30,
+        "padding_top_desktop": 30,
+        "padding_bottom_desktop": 30
+      }
+    },
     "three_js_test_eUKFCM": {
       "type": "three-js-test",
+      "disabled": true,
       "settings": {
         "title": "Three js test",
         "background": "#ffecfe",
@@ -23,7 +223,7 @@
         "1659626897fc1fc69e-0": {
           "type": "content",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_34315.png",
+            "image": "shopify://shop_images/Frame_34315.png",
             "color_background": "#5a58cf",
             "opacity_background": 15,
             "icon__title": "Doctor",
@@ -35,15 +235,15 @@
             "content-vertical__block-paragraph--1": "Board-certified and specifically trained on weight loss medication",
             "content-vertical__block-paragraph--2": "Virtual appointments, no in-person office visits required",
             "content-vertical__block-paragraph--3": "Found doctors customize the program to your specific needs",
-            "content-vertical__button--link": "shopify:\/\/products\/plant-red-poinsettia",
+            "content-vertical__button--link": "shopify://products/plant-red-poinsettia",
             "content-vertical__button--name": "Continue",
-            "content-vertical__price": "Starting at $99\/month"
+            "content-vertical__price": "Starting at $99/month"
           }
         },
         "1659626897fc1fc69e-1": {
           "type": "content",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_34314.png",
+            "image": "shopify://shop_images/Frame_34314.png",
             "color_background": "#408bfc",
             "opacity_background": 15,
             "icon__title": "Coach",
@@ -55,15 +255,15 @@
             "content-vertical__block-paragraph--1": "Coaches tailor your movement and nutrition plan to fit your needs",
             "content-vertical__block-paragraph--2": "On-demand availability to answer all of your questions",
             "content-vertical__block-paragraph--3": "Build sustainable habits with the help of your coach",
-            "content-vertical__button--link": "shopify:\/\/products\/plant-caladium",
+            "content-vertical__button--link": "shopify://products/plant-caladium",
             "content-vertical__button--name": "Continue",
-            "content-vertical__price": "Starting at $99\/month"
+            "content-vertical__price": "Starting at $99/month"
           }
         },
         "1659626897fc1fc69e-2": {
           "type": "content",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_33501_1.png",
+            "image": "shopify://shop_images/Frame_33501_1.png",
             "color_background": "#4f6258",
             "opacity_background": 20,
             "icon__title": "App",
@@ -75,35 +275,35 @@
             "content-vertical__block-paragraph--1": "Keep track of your progress by logging your routines",
             "content-vertical__block-paragraph--2": "Coaches use logged routines to personalize your weight loss program",
             "content-vertical__block-paragraph--3": "Integrates with Apple Health and Google Fit",
-            "content-vertical__button--link": "shopify:\/\/products\/plant-calla-lily",
+            "content-vertical__button--link": "shopify://products/plant-calla-lily",
             "content-vertical__button--name": "Continue",
-            "content-vertical__price": "Starting at $99\/month"
+            "content-vertical__price": "Starting at $99/month"
           }
         },
         "61f3db54-7903-444a-9fc1-4246adb646e9": {
           "type": "content",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_33500.png",
+            "image": "shopify://shop_images/Frame_33500.png",
             "color_background": "#f9d270",
             "opacity_background": 25,
             "icon__title": "Medication",
             "icon": "icon_medication",
             "content-vertical__block-title": "Prescription medication",
-            "content-vertical__block-description": "<p>Our medical team provedens accesss to the widest set of prescriptions on the market, including (but not limited to):<\/p>",
-            "content-vertical__block-links": "<p><a href=\"\/collections\/frontpage\" target=\"_blank\" title=\"Flowers\">Phentermine<\/a><\/p><p><a href=\"\/products\/plant-hydrangea-mophead-blue\" title=\"Plant Hydrangea Mophead Blue\">GLP-1<\/a><\/p><p><a href=\"\/products\/plant-bromeliad\" title=\"Plant Bromeliad\">Metformin<\/a><\/p>",
+            "content-vertical__block-description": "<p>Our medical team provedens accesss to the widest set of prescriptions on the market, including (but not limited to):</p>",
+            "content-vertical__block-links": "<p><a href=\"/collections/frontpage\" target=\"_blank\" title=\"Flowers\">Phentermine</a></p><p><a href=\"/products/plant-hydrangea-mophead-blue\" title=\"Plant Hydrangea Mophead Blue\">GLP-1</a></p><p><a href=\"/products/plant-bromeliad\" title=\"Plant Bromeliad\">Metformin</a></p>",
             "color_background_block-links": "#fdf4db",
             "content-vertical__block-paragraph--1": "Work directly with our doctors to find the medication right for you",
             "content-vertical__block-paragraph--2": "Medication delivered to your door",
             "content-vertical__block-paragraph--3": "No insurance requirements",
-            "content-vertical__button--link": "shopify:\/\/products\/plant-bromeliad",
+            "content-vertical__button--link": "shopify://products/plant-bromeliad",
             "content-vertical__button--name": "Continue",
-            "content-vertical__price": "Starting at $99\/month"
+            "content-vertical__price": "Starting at $99/month"
           }
         },
         "2c0ab332-5e2e-4876-856c-51e8d5a7dfa5": {
           "type": "content",
           "settings": {
-            "image": "shopify:\/\/shop_images\/Frame_33500_1.png",
+            "image": "shopify://shop_images/Frame_33500_1.png",
             "color_background": "#cf6d58",
             "opacity_background": 30,
             "icon__title": "Community",
@@ -115,9 +315,9 @@
             "content-vertical__block-paragraph--1": "Celebrate your journey with thousands of other members",
             "content-vertical__block-paragraph--2": "Share recipes, weight loss milestones, and roadblocks",
             "content-vertical__block-paragraph--3": "The Found team is actively involved to make sure you have the best experience",
-            "content-vertical__button--link": "shopify:\/\/products\/plant-caladium",
+            "content-vertical__button--link": "shopify://products/plant-caladium",
             "content-vertical__button--name": "Continue",
-            "content-vertical__price": "Starting at $99\/month"
+            "content-vertical__price": "Starting at $99/month"
           }
         }
       },
@@ -131,7 +331,7 @@
       "disabled": true,
       "settings": {
         "header": "The Found Program",
-        "text": "<p>There’s no one-and-done solution when it comes to sustainable<br\/>weight care. With Found, five key factors come together on yourjourney to reach your goals<\/p>"
+        "text": "<p>There’s no one-and-done solution when it comes to sustainable<br/>weight care. With Found, five key factors come together on yourjourney to reach your goals</p>"
       }
     },
     "rich_text": {
@@ -140,14 +340,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "<p>Talk about your brand<\/p>",
+            "heading": "<p>Talk about your brand</p>",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
           }
         }
       },
@@ -254,7 +454,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
+            "button_link_1": "shopify://collections/all",
             "button_style_secondary_1": true,
             "button_label_2": "",
             "button_link_2": "",
@@ -269,7 +469,7 @@
       ],
       "disabled": true,
       "settings": {
-        "image": "shopify:\/\/shop_images\/main.png",
+        "image": "shopify://shop_images/main.png",
         "image_overlay_opacity": 40,
         "image_height": "small",
         "adapt_height_first_image": false,
@@ -307,8 +507,7 @@
         },
         "1660584465d899647e-3": {
           "type": "price",
-          "settings": {
-          }
+          "settings": {}
         },
         "1660584465d899647e-4": {
           "type": "variant_picker",
@@ -318,8 +517,7 @@
         },
         "1660584465d899647e-5": {
           "type": "quantity_selector",
-          "settings": {
-          }
+          "settings": {}
         },
         "1660584465d899647e-6": {
           "type": "buy_buttons",
@@ -357,6 +555,7 @@
     }
   },
   "order": [
+    "lookbook_rY6ycP",
     "three_js_test_eUKFCM",
     "165962689744a60edd",
     "rich_text",
